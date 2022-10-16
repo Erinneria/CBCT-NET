@@ -1,1 +1,1 @@
-# CBCT-net
+# CBCT-NET
