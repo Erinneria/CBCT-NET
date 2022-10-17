@@ -1,4 +1,2 @@
 # CBCT-NET
-
----
-
+CBCT-NET is a deep learning framework for CBCT image reconstruction. It is based on the U-Net architecture and is trained on a large dataset of CBCT images. The framework is implemented in Python and uses the Pytorch library. The framework is designed to be easily extensible and can be used for other deep learning tasks.
