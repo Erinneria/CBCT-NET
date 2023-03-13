@@ -30,6 +30,7 @@ class Upsample_block(nn.Module):
 
     def forward(self, x, y):
         x = self.transconv(x)
+        print(x.shape, y.shape)
         x = torch.cat((x, y), dim=1)
         x = F.relu(self.bn1(self.conv1(x)))
         x = F.relu(self.bn2(self.conv2(x)))
@@ -39,8 +40,8 @@ class Upsample_block(nn.Module):
 
 class Unet(nn.Module):
     def __init__(self, args):
-        in_chan = 4
-        out_chan = 3
+        in_chan = 3
+        out_chan = 1
         super(Unet, self).__init__()
         self.down1 = Downsample_block(in_chan, 64)
         self.down2 = Downsample_block(64, 128)

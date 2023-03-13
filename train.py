@@ -14,7 +14,7 @@ import numpy as np
 from tqdm import tqdm
 
 from sklearn.model_selection import train_test_split
-from sklearn.externals import joblib
+import joblib
 from skimage.io import imread
 
 import torch
@@ -52,13 +52,13 @@ def parse_args():
                             ' | '.join(arch_names) +
                             ' (default: NestedUNet)')
     parser.add_argument('--deepsupervision', default=False, type=str2bool)
-    parser.add_argument('--dataset', default="jiu0Monkey",
+    parser.add_argument('--dataset', default="erinneria",
                         help='dataset name')
     parser.add_argument('--input-channels', default=4, type=int,
                         help='input channels')
-    parser.add_argument('--image-ext', default='png',
+    parser.add_argument('--image-ext', default='jpg',
                         help='image file extension')
-    parser.add_argument('--mask-ext', default='png',
+    parser.add_argument('--mask-ext', default='jpg',
                         help='mask file extension')
     parser.add_argument('--aug', default=False, type=str2bool)
     parser.add_argument('--loss', default='BCEDiceLoss',
@@ -281,7 +281,7 @@ def main():
             val_log['iou'],
         ], index=['epoch', 'lr', 'loss', 'iou', 'val_loss', 'val_iou'])
 
-        log = log.append(tmp, ignore_index=True)
+        log = pd.concat([log, tmp], ignore_index=True)
         log.to_csv('models/%s/log.csv' %args.name, index=False)
 
         trigger += 1

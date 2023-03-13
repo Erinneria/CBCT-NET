@@ -25,38 +25,37 @@ class Dataset(torch.utils.data.Dataset):
         img_path = self.img_paths[idx]
         mask_path = self.mask_paths[idx]
         #读numpy数据(npy)的代码
-        npimage = np.load(img_path)
-        npmask = np.load(mask_path)
-        npimage = npimage.transpose((2, 0, 1))
+        # npimage = np.load(img_path)
+        # npmask = np.load(mask_path)
+        # npimage = npimage.transpose((2, 0, 1))
 
-        WT_Label = npmask.copy()
-        WT_Label[npmask == 1] = 1.
-        WT_Label[npmask == 2] = 1.
-        WT_Label[npmask == 4] = 1.
-        TC_Label = npmask.copy()
-        TC_Label[npmask == 1] = 1.
-        TC_Label[npmask == 2] = 0.
-        TC_Label[npmask == 4] = 1.
-        ET_Label = npmask.copy()
-        ET_Label[npmask == 1] = 0.
-        ET_Label[npmask == 2] = 0.
-        ET_Label[npmask == 4] = 1.
-        nplabel = np.empty((160, 160, 3))
-        nplabel[:, :, 0] = WT_Label
-        nplabel[:, :, 1] = TC_Label
-        nplabel[:, :, 2] = ET_Label
-        nplabel = nplabel.transpose((2, 0, 1))
+        # WT_Label = npmask.copy()
+        # WT_Label[npmask == 1] = 1.
+        # WT_Label[npmask == 2] = 1.
+        # WT_Label[npmask == 4] = 1.
+        # TC_Label = npmask.copy()
+        # TC_Label[npmask == 1] = 1.
+        # TC_Label[npmask == 2] = 0.
+        # TC_Label[npmask == 4] = 1.
+        # ET_Label = npmask.copy()
+        # ET_Label[npmask == 1] = 0.
+        # ET_Label[npmask == 2] = 0.
+        # ET_Label[npmask == 4] = 1.
+        # nplabel = np.empty((160, 160, 3))
+        # nplabel[:, :, 0] = WT_Label
+        # nplabel[:, :, 1] = TC_Label
+        # nplabel[:, :, 2] = ET_Label
+        # nplabel = nplabel.transpose((2, 0, 1))
 
-        nplabel = nplabel.astype("float32")
-        npimage = npimage.astype("float32")
+        # nplabel = nplabel.astype("float32")
+        # npimage = npimage.astype("float32")
 
-        return npimage,nplabel
+        # return npimage,nplabel
 
 
         #读图片（如jpg、png）的代码
-        '''
-        image = imread(img_path)
-        mask = imread(mask_path)
+        image = imread(img_path, as_gray=True)
+        mask = imread(mask_path, as_gray=True)
 
         image = image.astype('float32') / 255
         mask = mask.astype('float32') / 255
@@ -70,10 +69,9 @@ class Dataset(torch.utils.data.Dataset):
                 mask = mask[::-1, :].copy()
 
         image = color.gray2rgb(image)
-        #image = image[:,:,np.newaxis]
+        # image = image[:,:,np.newaxis]
         image = image.transpose((2, 0, 1))
         mask = mask[:,:,np.newaxis]
         mask = mask.transpose((2, 0, 1))       
         return image, mask
-        '''
 
