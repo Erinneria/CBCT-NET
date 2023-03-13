@@ -29,7 +29,7 @@ from torchvision import datasets, models, transforms
 
 from dataset import Dataset
 
-import Unet
+from unet import Unet
 from metrics import dice_coef, batch_iou, mean_iou, iou_score ,ppv,sensitivity
 import losses
 from utils import str2bool, count_params
@@ -72,8 +72,8 @@ def main():
     model = model.cuda()
 
     # Data loading code
-    img_paths = glob(r'D:\Project\CollegeDesign\dataset\Brats2018FoulModel2D\testImage\*')
-    mask_paths = glob(r'D:\Project\CollegeDesign\dataset\Brats2018FoulModel2D\testMask\*')
+    img_paths = glob('/home/erinneria/CBCT/dataset/testImage/*')
+    mask_paths = glob('/home/erinneria/CBCT/dataset/testMask/*')
 
     val_img_paths = img_paths
     val_mask_paths = mask_paths
