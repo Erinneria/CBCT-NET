@@ -216,8 +216,8 @@ def main():
     cudnn.benchmark = True
 
     # Data loading code
-    img_paths = glob(r'D:\Project\CollegeDesign\dataset\Brats2018FoulModel2D\trainImage\*')
-    mask_paths = glob(r'D:\Project\CollegeDesign\dataset\Brats2018FoulModel2D\trainMask\*')
+    img_paths = glob('/home/erinneria/CBCT/dataset/trainImage/*')
+    mask_paths = glob('/home/erinneria/CBCT/dataset/trainMask/*')
 
     train_img_paths, val_img_paths, train_mask_paths, val_mask_paths = \
         train_test_split(img_paths, mask_paths, test_size=0.2, random_state=41)
